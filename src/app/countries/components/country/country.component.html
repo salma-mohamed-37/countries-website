@@ -1,0 +1,29 @@
+<form #countryName="ngForm" (ngSubmit)="onsubmit()" novalidate >
+  Enter the name of the country:
+  <input name="country" required [(ngModel)]="country" />
+  <br/>
+  <input [disabled]="countryName.invalid" type="submit"  value="search"/>
+</form>
+<div *ngIf="response">
+
+  {{ response.name.common }}
+  {{ response.name.official }}
+  <div *ngFor="let currency of currencies">
+    {{ currency.name }}  {{ currency.symbol }}
+
+  </div>
+
+  <div *ngFor="let c of capital">
+    {{ c }}
+  </div>
+
+  <span *ngFor="let continent of continents" >
+    {{ continent }}
+  </span>
+<img [src]="flag" />
+<span *ngFor="let l of languages" >
+  {{ l }}
+</span>
+<a [href]="map" target="_blank">map of {{ response.name.common }}</a>
+</div>
+
