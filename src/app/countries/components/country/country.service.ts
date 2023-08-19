@@ -10,6 +10,6 @@ export class CountryService {
 
   getCountry(name:string)
   {
-    return this.http.get("https://restcountries.com/v3.1/name/"+name);
+    return this.http.get("https://restcountries.com/v3.1/name/"+name+"?fields=name,flags,currencies,continents,capital,languages,maps");
   }
 }
