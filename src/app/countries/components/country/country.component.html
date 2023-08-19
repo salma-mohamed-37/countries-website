@@ -16,33 +16,33 @@
     <br/>
 
     <div *ngIf="response" class="response">
-      <img [src]="flag" class="flag" alt="flag of the country" />
-      -Common Name: {{ response.name.common }}
+      <img [src]="record.flag" class="flag" alt="flag of the country" />
+      -Common Name: {{ record.common}}
       <br/>
-      -Officical Name: {{ response.name.official }}
+      -Officical Name: {{ record.official }}
       <br/>
 
-      -Capital: <span *ngFor="let c of capital">
+      -Capital: <span *ngFor="let c of record.capital">
         {{ c }}
       </span>
       <br/>
 
-      -Language: <span *ngFor="let l of languages" >
+      -Language: <span *ngFor="let l of record.languages" >
         {{ l }}
       </span>
       <br/>
 
-      -Continent(s): <span *ngFor="let continent of continents" >
+      -Continent(s): <span *ngFor="let continent of record.continents" >
         {{ continent }}
       </span>
       <br/>
 
       -Currency:
-      <span *ngFor="let currency of currencies">
+      <span *ngFor="let currency of record.currencies">
         {{ currency.name }}  {{ currency.symbol }}
       </span>
       <br/>
-    -Click here to display the <a [href]="map" target="_blank" class="map">map of {{ response.name.common }}</a>
+    -Click here to display the <a [href]="record.map" target="_blank" class="map">map of {{ record.common }}</a>
     </div>
 
 

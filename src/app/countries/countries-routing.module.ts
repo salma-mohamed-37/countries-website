@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import{RouterModule,Routes} from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CountryComponent } from './components/country/country.component';
+import { LanguageComponent } from './components/language/language.component';
 
 const routes :Routes =[
   {
@@ -12,7 +13,12 @@ const routes :Routes =[
   {
     path:'country',
     component : CountryComponent
-  }
+  },
+  {
+    path:'language',
+    component : LanguageComponent
+  },
+
 ]
 
 @NgModule({

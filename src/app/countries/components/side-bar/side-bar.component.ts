@@ -21,8 +21,8 @@ export class SideBarComponent {
       title:"Get country details by name"
     },
     {
-      url:"/country",
-      title:"Get country details by name"
+      url:"/language",
+      title:"Get countries by language"
     },
     {
       url:"/country",
