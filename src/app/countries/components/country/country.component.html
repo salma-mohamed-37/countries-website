@@ -1,29 +1,52 @@
-<form #countryName="ngForm" (ngSubmit)="onsubmit()" novalidate >
-  Enter the name of the country:
-  <input name="country" required [(ngModel)]="country" />
-  <br/>
-  <input [disabled]="countryName.invalid" type="submit"  value="search"/>
-</form>
-<div *ngIf="response">
+<nav>
+  <app-side-bar></app-side-bar>
+</nav>
 
-  {{ response.name.common }}
-  {{ response.name.official }}
-  <div *ngFor="let currency of currencies">
-    {{ currency.name }}  {{ currency.symbol }}
+<section>
+    <form #countryName="ngForm" (ngSubmit)="onsubmit()" novalidate >
+      <label>Enter the name of the country</label>
+      <br/>
+      <br/>
+      <div class="search">
+        <input type="text" name="country" required [(ngModel)]="country" class="text"/>
+        <br/>
+        <input  type="submit"  value="search"class="button"/>
+      </div>
 
-  </div>
+      <p class="error" [(innerHtml)]="errorMessage" *ngIf="errorMessage"></p>
 
-  <div *ngFor="let c of capital">
-    {{ c }}
-  </div>
+    </form>
+    <br/>
 
-  <span *ngFor="let continent of continents" >
-    {{ continent }}
-  </span>
-<img [src]="flag" />
-<span *ngFor="let l of languages" >
-  {{ l }}
-</span>
-<a [href]="map" target="_blank">map of {{ response.name.common }}</a>
-</div>
+    <div *ngIf="response" class="response">
+      <img [src]="flag" class="flag" alt="flag of the country" />
+      -Common Name: {{ response.name.common }}
+      <br/>
+      -Officical Name: {{ response.name.official }}
+      <br/>
 
+      -Capital: <span *ngFor="let c of capital">
+        {{ c }}
+      </span>
+      <br/>
+
+      -Language: <span *ngFor="let l of languages" >
+        {{ l }}
+      </span>
+      <br/>
+
+      -Continent(s): <span *ngFor="let continent of continents" >
+        {{ continent }}
+      </span>
+      <br/>
+
+      -Currency:
+      <span *ngFor="let currency of currencies">
+        {{ currency.name }}  {{ currency.symbol }}
+      </span>
+      <br/>
+    -Click here to display the <a [href]="map" target="_blank" class="map">map of {{ response.name.common }}</a>
+    </div>
+
+
+</section>
