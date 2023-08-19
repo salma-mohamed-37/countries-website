@@ -12,7 +12,9 @@ interface Link
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent {
-
+  display:any;
+  up:any;
+  down:any;
   links:Link[] = [
     {
       url:"/country",
@@ -32,4 +34,20 @@ export class SideBarComponent {
     }
 
   ]
+
+  expand()
+  {
+    this.display ="block";
+    this.down="none";
+    this.up="inline";
+    console.log("e")
+  }
+
+  collapse()
+  {
+    this.display="none";
+    this.down="inline";
+    this.up="none";
+    console.log("c")
+  }
 }
