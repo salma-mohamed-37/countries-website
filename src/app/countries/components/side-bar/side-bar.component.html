@@ -1,9 +1,0 @@
-<nav>
-<i class="pi pi-chevron-down" (click)="expand()" [(style.display)]="down"></i>
-<i class="pi pi-chevron-up" (click)="collapse()" [(style.display)]="up"></i>
-<aside [(style.display)]="display">
-  <div *ngFor="let link of links">
-    <a [routerLink]="link.url"><span>{{link.title}}</span></a>
-  </div>
-</aside>
-</nav>

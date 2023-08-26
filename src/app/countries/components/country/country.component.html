@@ -1,49 +1,41 @@
-<app-side-bar></app-side-bar>
-<section>
-    <form #countryName="ngForm" (ngSubmit)="onsubmit()" novalidate >
-      <label>Enter the name of the country</label>
-      <br/>
-      <br/>
-      <div class="search">
-        <input type="text" name="country" required [(ngModel)]="country" class="text"/>
-        <br/>
-        <input  type="submit"  value="search"class="button"/>
-      </div>
-
-      <p class="error" [(innerHtml)]="errorMessage" *ngIf="errorMessage"></p>
-
+<section class="country">
+    <form #countryName="ngForm" (ngSubmit)="onsubmit()" novalidate>
+      <p class="title">To know more about any country </p>
+        <span>Enter the name of the country here </span>
+        <input type="text" name="country" required [(ngModel)]="country" />
+        <input  type="submit"  value="search"/>
+        <p class="error" [(innerHtml)]="errorMessage" *ngIf="errorMessage"></p>
     </form>
+
     <br/>
 
     <div *ngIf="response" class="response">
-      <img [src]="record.flag" class="flag" alt="flag of the country" />
-      -Common Name: {{ record.common}}
+      <img [src]="record.flag" class="flag" alt="The flag of the country" />
+      <span class="property">-Common Name:</span> {{ record.common}}
       <br/>
-      -Officical Name: {{ record.official }}
+      <span class="property">-Officical Name:</span> {{ record.official }}
       <br/>
 
-      -Capital: <span *ngFor="let c of record.capital">
+      <span class="property">-Capital:</span> <span *ngFor="let c of record.capital">
         {{ c }}
       </span>
       <br/>
 
-      -Language: <span *ngFor="let l of record.languages" >
-        {{ l }}
+      <span class="property">-Language(s):</span> <span *ngFor="let l of record.languages; let isLast = last" >
+        {{ l }}<span *ngIf="!isLast">,</span>
       </span>
       <br/>
 
-      -Continent(s): <span *ngFor="let continent of record.continents" >
-        {{ continent }}
+      <span class="property">-Continent(s):</span> <span *ngFor="let continent of record.continents; let isLast = last" >
+        {{ continent }} <span *ngIf="!isLast">,</span>
       </span>
       <br/>
 
-      -Currency:
+      <span class="property">-Currency:</span>
       <span *ngFor="let currency of record.currencies">
-        {{ currency.name }}  {{ currency.symbol }}
+        {{ currency.name }} <b>{{ currency.symbol }}</b>
       </span>
       <br/>
-    -Click here to display the <a [href]="record.map" target="_blank" class="map">map of {{ record.common }}</a>
+    -Click here to display the <a [href]="record.map" target="_blank">map of {{ record.common }}</a>
     </div>
-
-
 </section>

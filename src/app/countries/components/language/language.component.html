@@ -1,4 +1,18 @@
-<app-side-bar></app-side-bar>
-<section>
-  helo
+<section class="lang">
+  <form #language="ngForm" (ngSubmit)="onsubmit()" novalidate>
+    <p class="title">To know which countries speak specfic language</p>
+    <br/>
+    <span>Enter the language here </span>
+      <input type="text" name="lang" required [(ngModel)]="lang"/>
+      <input  type="submit"  value="search" class="button"/>
+    <p class="error" [(innerHtml)]="errorMessage" *ngIf="errorMessage"></p>
+  </form>
+
+    <div class="response">
+      <p *ngFor="let c of countries;let isLast = last">
+        {{c.name.common}}
+      </p>
+    </div>
+
+
 </section>

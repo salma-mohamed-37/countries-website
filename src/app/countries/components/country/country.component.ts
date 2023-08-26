@@ -25,10 +25,11 @@ export class CountryComponent {
   currencies :any[]=[];
   continents :any[]=[];
   capital :any;
-  flag :any;
+  flag :any="";
   languages :any[] =[];
   map: any;
   errorMessage:any;
+  background:any="{background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),url(assets/fullbackground.jpg);}";
 
   constructor(private service : CountryService){}
 
@@ -37,7 +38,7 @@ export class CountryComponent {
     if(this.country != "")
     {
       this.errorMessage="";
-      this.service.getCountry(this.country).subscribe((res:any)=>
+      this.service.getCountry(this.country).subscribe(res =>
       {
         console.log("received");
         this.response =res;
@@ -53,23 +54,20 @@ export class CountryComponent {
           languages :Object.values(this.response.languages),
           map: this.response.maps.googleMaps
         };
-        /*
-        this.currencies = Object.values(this.response.currencies);
-        this.capital = Object.values(this.response.capital);
-        this.continents = Object.values(this.response.continents);
-        this.flag = this.response.flags.png;
-        this.languages = Object.values(this.response.languages);
-        this.map =  this.response.maps.googleMaps;
-        */
+        this.background ="{background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),"+this.flag+";}";
+
       }, error => {
       console.log('handle error');
       this.errorMessage = "No country with this name";
+      this.response=null;
       }
     );
+
     }
     else
     {
       this.errorMessage = "Please enter the name of the country";
+      this.response=null;
     }
 
   }
