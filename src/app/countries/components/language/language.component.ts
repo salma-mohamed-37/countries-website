@@ -18,16 +18,18 @@ export class LanguageComponent {
       if(this.lang != "")
       {
         this.errorMessage="";
-        this.service.getCountries(this.lang).subscribe(res =>
-          {
+
+        this.service.getCountries(this.lang).subscribe({
+          next: (res)=>{
             console.log("received");
             this.countries =Object.values(res);
-          }, error => {
-          console.log('handle error');
-          this.errorMessage = "This language is not the official language of any country";
-          this.countries=[];
+          },
+          error:(err)=>{
+            console.log('handle error');
+            this.errorMessage = "This language is not the official language of any country";
+            this.countries=[];
           }
-        );
+        })
       }
       else
       {

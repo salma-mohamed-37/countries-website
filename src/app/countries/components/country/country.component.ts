@@ -38,31 +38,33 @@ export class CountryComponent {
     if(this.country != "")
     {
       this.errorMessage="";
-      this.service.getCountry(this.country).subscribe(res =>
-      {
-        console.log("received");
-        this.response =res;
-        this.response = this.response[0];
-        this.record  =
+      this.service.getCountry(this.country).subscribe({
+        next: (res)=>{
+          console.log("received");
+          this.response =res;
+          this.response = this.response[0];
+          this.record  =
+          {
+            common: this.response.name.common ,
+            official:this.response.name.official ,
+            currencies :Object.values(this.response.currencies),
+            continents :Object.values(this.response.continents),
+            capital :Object.values(this.response.capital),
+            flag :this.response.flags.png,
+            languages :Object.values(this.response.languages),
+            map: this.response.maps.googleMaps
+          };
+          this.background ="{background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),"+this.flag+";}";
+
+        },
+        error: (err)=>
         {
-          common: this.response.name.common ,
-          official:this.response.name.official ,
-          currencies :Object.values(this.response.currencies),
-          continents :Object.values(this.response.continents),
-          capital :Object.values(this.response.capital),
-          flag :this.response.flags.png,
-          languages :Object.values(this.response.languages),
-          map: this.response.maps.googleMaps
-        };
-        this.background ="{background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),"+this.flag+";}";
+          console.log('handle error');
+          this.errorMessage = "No country with this name";
+          this.response=null;
 
-      }, error => {
-      console.log('handle error');
-      this.errorMessage = "No country with this name";
-      this.response=null;
-      }
-    );
-
+        }
+      })
     }
     else
     {
